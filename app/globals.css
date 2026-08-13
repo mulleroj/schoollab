@@ -125,12 +125,12 @@ footer {
 }
 
 .hero {
-  min-height: 620px;
+  min-height: 560px;
   display: grid;
   grid-template-columns: minmax(210px, .75fr) minmax(520px, 1.7fr) minmax(210px, .75fr);
   align-items: stretch;
   gap: clamp(16px, 2.4vw, 40px);
-  padding: 44px 0 105px;
+  padding: 32px 0 78px;
   position: relative;
   isolation: isolate;
 }
@@ -977,7 +977,7 @@ footer p { margin: 0; }
 footer p:last-child { text-align: right; }
 
 @media (max-width: 1080px) {
-  .hero { grid-template-columns: minmax(145px,.45fr) minmax(480px,1.7fr) minmax(145px,.45fr); min-height: 580px; padding: 44px 0 100px; gap: 10px; }
+  .hero { grid-template-columns: minmax(145px,.45fr) minmax(480px,1.7fr) minmax(145px,.45fr); min-height: 550px; padding: 32px 0 74px; gap: 10px; }
   .hero h1 { font-size: clamp(3.5rem, 7vw, 5.3rem); }
   .language-globe { width: 225px; left: -120px; top: 145px; }
   .greeting-hallo, .greeting-bonjour { display: none; }
@@ -996,7 +996,7 @@ footer p:last-child { text-align: right; }
   .topbar, .hero, .project-network, .future-section, footer { width: min(100% - 34px, 680px); }
   .topbar { min-height: 72px; }
   .topbar-note { display: none; }
-  .hero { display: block; min-height: 670px; padding: 62px 0 116px; }
+  .hero { display: block; min-height: 610px; padding: 46px 0 94px; }
   .hero-center { position: relative; z-index: 3; }
   .hero h1 { font-size: clamp(3.05rem, 13vw, 4.8rem); }
   .hero-slogan { margin-top: 18px; }
@@ -1030,7 +1030,7 @@ footer p:last-child { text-align: right; }
 }
 
 @media (max-width: 480px) {
-  .hero { min-height: 690px; padding-top: 54px; }
+  .hero { min-height: 610px; padding-top: 42px; }
   .hero-copy .eyebrow { margin-bottom: 17px; }
   .hero h1 { font-size: clamp(2.7rem, 14vw, 3.8rem); }
   .hero-lead { max-width: 330px; font-size: .92rem; }
