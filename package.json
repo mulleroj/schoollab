@@ -6,10 +6,13 @@
     "node": ">=22.13.0"
   },
   "scripts": {
-    "dev": "vinext dev",
-    "build": "vinext build",
-    "start": "vinext start",
-    "test": "npm run build && node --test tests/rendered-html.test.mjs",
+    "dev": "vite --config vite.netlify.config.ts",
+    "build": "vite build --config vite.netlify.config.ts",
+    "start": "vite preview --config vite.netlify.config.ts",
+    "build:sites": "vinext build",
+    "dev:sites": "vinext dev",
+    "test": "npm run build && node --test tests/netlify-build.test.mjs",
+    "test:sites": "npm run build:sites && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next"
   },
   "dependencies": {

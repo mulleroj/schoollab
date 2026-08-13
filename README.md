@@ -1,6 +1,6 @@
 # SchoolLab
 
-Produkční webový rozcestník pro školní projekty. Homepage propojuje projekty pro angličtinu a elektrotechniku v jednotném vizuálním systému digitální laboratoře.
+Produkční webový rozcestník pro školní projekty. Homepage propojuje projekty pro angličtinu a elektrotechniku v jednotném vizuálním systému digitální laboratoře. Produkční hosting zajišťuje Netlify z větve `main`.
 
 ## Úprava obsahu
 
@@ -21,3 +21,7 @@ npm test
 ```
 
 Web je veřejný statický rozcestník bez databáze a bez backendové aplikační logiky.
+
+## Netlify
+
+Konfigurace v `netlify.toml` spouští standardní Vite build a publikuje adresář `netlify-dist`. Výstup vždy obsahuje kořenový `index.html`, favicon, sociální náhled a verzované CSS/JavaScript assety.
