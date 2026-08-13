@@ -26,7 +26,12 @@ test("server-renders the complete SchoolLab project hub", async () => {
   const html = await response.text();
   assert.match(html, /<html lang="cs">/i);
   assert.match(html, /<title>SchoolLab \| Digitální školní projekty<\/title>/i);
-  assert.match(html, /Objevuj\. Uč se\./);
+  assert.match(html, /<h1 id="hero-title">SCHOOLLAB<\/h1>/);
+  assert.match(html, /Explore\.<\/span> <span>Learn\.<\/span> <span>Build\./);
+  assert.match(html, /Digitální prostor pro výuku, experimentování a objevování\./);
+  assert.match(html, /class="language-world" aria-hidden="true"/);
+  assert.match(html, /class="electro-world" aria-hidden="true"/);
+  assert.match(html, /class="brand-connection" aria-hidden="true"/);
   assert.match(html, /Kam se dnes vydáš/);
   assert.match(html, /Prohlédnout projekty/);
   assert.match(html, /role="switch"/);
