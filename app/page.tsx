@@ -93,8 +93,8 @@ export default function Home() {
             </button>
             <p>
               {powered
-                ? "Oba světy jsou propojené. Vyber si oblast a začni objevovat."
-                : "Volitelný světelný efekt – všechny projekty jsou dostupné hned."}
+                ? "SchoolLab je aktivní. Oba světy i projektová síť jsou pod proudem."
+                : "Všechny projekty jsou dostupné. Rozsviť SchoolLab a aktivuj jeho atmosféru."}
             </p>
           </aside>
         </div>

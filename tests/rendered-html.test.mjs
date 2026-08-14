@@ -46,10 +46,11 @@ test("server-renders the complete SchoolLab project hub", async () => {
 });
 
 test("keeps SchoolLab configurable and removes starter-only UI", async () => {
-  const [page, layout, data, packageJson] = await Promise.all([
+  const [page, layout, data, styles, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/data/projects.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
@@ -59,6 +60,9 @@ test("keeps SchoolLab configurable and removes starter-only UI", async () => {
   assert.match(data, /export const projects/);
   assert.match(data, /status: "active"/);
   assert.match(layout, /generateMetadata/);
+  assert.match(styles, /\.site-shell\[data-powered="true"\] \.project-portal:hover/);
+  assert.match(styles, /\.site-shell\[data-powered="true"\]\[data-active-zone="english"\]/);
+  assert.match(styles, /\.project-portal:focus-visible\s*\{[^}]*outline: 2px solid var\(--accent\)/s);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
 
   await assert.rejects(access(new URL("../app/_sites-preview", import.meta.url)));
