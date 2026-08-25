@@ -119,7 +119,7 @@ export default function Home() {
             </g>
             <g className="meter" transform="translate(166 28)">
               <path d="M0 58a55 55 0 0 1 110 0" fill="none" stroke="currentColor" strokeWidth="2" />
-              <path d="M55 58 86 31" fill="none" stroke="currentColor" strokeWidth="2.5" />
+              <path className="meter-needle" d="M55 58 106 58" fill="none" stroke="currentColor" strokeWidth="2.5" />
               <circle cx="55" cy="58" r="5" fill="currentColor" />
               <text x="55" y="80" textAnchor="middle">V</text>
             </g>
