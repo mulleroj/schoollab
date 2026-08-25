@@ -240,12 +240,34 @@ export default function Home() {
           <p>Postupně přibudou nové oblasti pro společenské vědy, ekonomiku i digitální technologie.</p>
         </div>
         <div className="future-list" aria-label="Plánované oblasti">
-          {futureLabs.map((lab) => (
-            <span className="future-lab" key={lab.id}>
-              <span className="future-glyph" aria-hidden="true">{lab.glyph}</span>
-              <strong>{lab.title}</strong>
-            </span>
-          ))}
+          {futureLabs.map((lab) => {
+            const content = (
+              <>
+                <span className="future-glyph" aria-hidden="true">{lab.glyph}</span>
+                <strong>{lab.title}</strong>
+              </>
+            );
+
+            return lab.url ? (
+              <a
+                aria-label={`${lab.title} – aktivní, otevřít projekt`}
+                className="future-lab future-lab-active"
+                href={lab.url}
+                key={lab.id}
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                {content}
+                <span className="future-status" aria-label="Aktivní">
+                  <span className="future-status-dot" aria-hidden="true" />
+                  Aktivní
+                </span>
+                <span className="future-arrow" aria-hidden="true">↗</span>
+              </a>
+            ) : (
+              <span className="future-lab" key={lab.id}>{content}</span>
+            );
+          })}
         </div>
       </section>
 

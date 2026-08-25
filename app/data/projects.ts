@@ -94,8 +94,8 @@ export const projects: Project[] = [
 ];
 
 export const futureLabs = [
-  { id: "society", title: "Society Lab", glyph: "◎" },
-  { id: "economy", title: "Economy Lab", glyph: "↗" },
-  { id: "ai", title: "AI Lab", glyph: "◇" },
-  { id: "vr", title: "VR / 3D Lab", glyph: "⬡" },
+  { id: "society", title: "Society Lab", glyph: "◎", url: null },
+  { id: "economy", title: "Economy Lab", glyph: "↗", url: null },
+  { id: "ai", title: "AI ve výuce", glyph: "◇", url: "https://ai-ve-vyuce.netlify.app/" },
+  { id: "vr", title: "VR / 3D Lab", glyph: "⬡", url: null },
 ] as const;
