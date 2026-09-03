@@ -97,5 +97,11 @@ export const futureLabs = [
   { id: "society", title: "Society Lab", glyph: "◎", url: null },
   { id: "economy", title: "Economy Lab", glyph: "↗", url: null },
   { id: "ai", title: "AI ve výuce", glyph: "◇", url: "https://ai-ve-vyuce.netlify.app/" },
+  {
+    id: "podopraxe",
+    title: "Dekodér podpůrných opatření",
+    glyph: "▣",
+    url: "https://podopraxe.netlify.app/",
+  },
   { id: "vr", title: "VR / 3D Lab", glyph: "⬡", url: null },
 ] as const;
