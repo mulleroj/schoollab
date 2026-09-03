@@ -41,7 +41,9 @@ test("server-renders the complete SchoolLab project hub", async () => {
   assert.match(html, /https:\/\/elektrikar-apps\.netlify\.app\//);
   assert.match(html, /https:\/\/elektro-lab\.netlify\.app\//);
   assert.match(html, /https:\/\/podopraxe\.netlify\.app\//);
-  assert.match(html, /Další témata jsou na cestě/);
+  assert.match(html, /Nové projekty přibývají/);
+  assert.match(html, /Dostupné nyní/);
+  assert.match(html, /Připravujeme/);
   assert.match(html, /property="og:title" content="SchoolLab \| Explore\. Learn\. Build\."/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });

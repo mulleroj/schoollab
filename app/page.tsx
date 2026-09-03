@@ -17,6 +17,37 @@ export default function Home() {
     ProjectCategory,
     (typeof categoryConfig)[ProjectCategory],
   ][];
+  const activeFutureLabs = futureLabs.filter((lab) => lab.url !== null);
+  const plannedFutureLabs = futureLabs.filter((lab) => lab.url === null);
+
+  const renderFutureLab = (lab: (typeof futureLabs)[number]) => {
+    const content = (
+      <>
+        <span className="future-glyph" aria-hidden="true">{lab.glyph}</span>
+        <strong>{lab.title}</strong>
+      </>
+    );
+
+    return lab.url ? (
+      <a
+        aria-label={`${lab.title} – aktivní, otevřít projekt`}
+        className="future-lab future-lab-active"
+        href={lab.url}
+        key={lab.id}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        {content}
+        <span className="future-status" aria-label="Aktivní">
+          <span className="future-status-dot" aria-hidden="true" />
+          Aktivní
+        </span>
+        <span className="future-arrow" aria-hidden="true">↗</span>
+      </a>
+    ) : (
+      <span className="future-lab" key={lab.id}>{content}</span>
+    );
+  };
 
   return (
     <main
@@ -235,39 +266,40 @@ export default function Home() {
 
       <section className="future-section" aria-labelledby="future-title">
         <div className="future-intro">
-          <p className="eyebrow">SchoolLab roste</p>
-          <h2 id="future-title">Další témata jsou na cestě.</h2>
-          <p>Postupně přibudou nové oblasti pro společenské vědy, ekonomiku i digitální technologie.</p>
+          <p className="eyebrow">SchoolLab se rozšiřuje</p>
+          <h2 id="future-title">Nové projekty přibývají.</h2>
+          <p>Některé už můžeš otevřít, další oblasti postupně připravujeme.</p>
         </div>
-        <div className="future-list" aria-label="Plánované oblasti">
-          {futureLabs.map((lab) => {
-            const content = (
-              <>
-                <span className="future-glyph" aria-hidden="true">{lab.glyph}</span>
-                <strong>{lab.title}</strong>
-              </>
-            );
+        <div className="future-groups">
+          <div className="future-group" role="group" aria-labelledby="future-active-title">
+            <div className="future-group-heading">
+              <div>
+                <p className="future-group-kicker">Aktivní projekty</p>
+                <h3 id="future-active-title">Dostupné nyní</h3>
+              </div>
+              <span className="future-group-count" aria-label={`${activeFutureLabs.length} aktivní projekty`}>
+                {String(activeFutureLabs.length).padStart(2, "0")}
+              </span>
+            </div>
+            <div className="future-list" aria-label="Dostupné projekty">
+              {activeFutureLabs.map(renderFutureLab)}
+            </div>
+          </div>
 
-            return lab.url ? (
-              <a
-                aria-label={`${lab.title} – aktivní, otevřít projekt`}
-                className="future-lab future-lab-active"
-                href={lab.url}
-                key={lab.id}
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                {content}
-                <span className="future-status" aria-label="Aktivní">
-                  <span className="future-status-dot" aria-hidden="true" />
-                  Aktivní
-                </span>
-                <span className="future-arrow" aria-hidden="true">↗</span>
-              </a>
-            ) : (
-              <span className="future-lab" key={lab.id}>{content}</span>
-            );
-          })}
+          <div className="future-group future-group-planned" role="group" aria-labelledby="future-planned-title">
+            <div className="future-group-heading">
+              <div>
+                <p className="future-group-kicker">Další směry</p>
+                <h3 id="future-planned-title">Připravujeme</h3>
+              </div>
+              <span className="future-group-count" aria-label={`${plannedFutureLabs.length} připravované projekty`}>
+                {String(plannedFutureLabs.length).padStart(2, "0")}
+              </span>
+            </div>
+            <div className="future-list" aria-label="Připravované projekty">
+              {plannedFutureLabs.map(renderFutureLab)}
+            </div>
+          </div>
         </div>
       </section>
 
