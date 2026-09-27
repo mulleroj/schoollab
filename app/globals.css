@@ -1844,12 +1844,6 @@ footer {
   box-shadow: 0 0 8px rgba(239, 183, 75, .2);
 }
 
-.future-group-planned:is(:hover, :focus-within) .future-lab-planned {
-  border-color: rgba(239, 183, 75, .44);
-  background: linear-gradient(135deg, rgba(239, 183, 75, .11), rgba(255, 255, 255, .018));
-  box-shadow: 0 0 18px rgba(239, 183, 75, .06);
-}
-
 .site-shell[data-powered="true"] .future-lab-active {
   border-color: rgba(166, 230, 178, .72);
   background: linear-gradient(135deg, rgba(86, 212, 221, .24), rgba(166, 230, 178, .1));
@@ -1887,6 +1881,15 @@ footer {
 
 .site-shell[data-powered="true"] .future-lab-active .future-arrow {
   text-shadow: 0 0 10px rgba(86, 212, 221, .8);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .future-group-planned:is(:hover, :focus-within) .future-lab-planned,
+  .site-shell[data-powered="true"] .future-group-planned:is(:hover, :focus-within) .future-lab-planned {
+    border-color: rgba(239, 183, 75, .44);
+    background: linear-gradient(135deg, rgba(239, 183, 75, .11), rgba(255, 255, 255, .018));
+    box-shadow: 0 0 18px rgba(239, 183, 75, .06);
+  }
 }
 
 .future-glyph {

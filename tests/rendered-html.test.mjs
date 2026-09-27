@@ -98,6 +98,7 @@ test("keeps SchoolLab configurable and removes starter-only UI", async () => {
   assert.match(styles, /future-network-rail > span,[\s\S]*future-lab-planned/);
   assert.match(styles, /\.site-shell\[data-powered="true"\] \.future-lab-planned::before/);
   assert.doesNotMatch(styles, /\.site-shell\[data-powered="true"\] \.future-lab-planned\s*\{\s*animation:/);
+  assert.match(styles, /@media \(hover: hover\) and \(pointer: fine\)[\s\S]*future-group-planned/);
   assert.match(page, /className="library-spines" aria-hidden="true"/);
   assert.match(styles, /\.project-portal:focus-visible\s*\{[^}]*outline: 2px solid var\(--accent\)/s);
   assert.doesNotMatch(packageJson, /react-loading-skeleton/);
