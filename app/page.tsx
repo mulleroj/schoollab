@@ -4,8 +4,10 @@ import { useState } from "react";
 import {
   categoryConfig,
   futureLabs,
+  libraryBooks,
   projects,
   siteConfig,
+  type LibraryBook,
   type ProjectCategory,
 } from "./data/projects";
 
@@ -20,9 +22,60 @@ export default function Home() {
   const activeFutureLabs = futureLabs.filter((lab) => lab.url !== null);
   const plannedFutureLabs = futureLabs.filter((lab) => lab.url === null);
 
+  const renderLibraryBook = (book: LibraryBook) => {
+    const content = (
+      <>
+        <div className="book-cover" aria-hidden="true">
+          <div className="book-cover-frame">
+            <span className="book-cover-kicker">TITUL {String(book.number).padStart(2, "0")}</span>
+            <span className="book-cover-ornament">✦</span>
+            <strong className="book-cover-title">{book.title}</strong>
+            <span className="book-cover-rule" />
+            <span className="book-cover-subtitle">{book.subtitle}</span>
+            <span className="book-cover-author">{book.author}</span>
+          </div>
+        </div>
+        <div className="library-book-content">
+          <div className="library-book-meta">
+            <span>INTERACTIVE READING</span>
+            <span>{book.level}</span>
+          </div>
+          <h3>{book.title}</h3>
+          <p className="library-book-subtitle">{book.subtitle}</p>
+          <p className="library-book-description">{book.description}</p>
+          <div className="library-book-tags">
+            {book.tags.map((tag) => <span key={tag}>{tag}</span>)}
+          </div>
+          <span className="library-book-cta">
+            <span>Otevřít knihu</span>
+            <span aria-hidden="true">↗</span>
+          </span>
+        </div>
+      </>
+    );
+
+    return book.status === "active" && book.url ? (
+      <a
+        aria-label={`${book.title} – otevřít knihu`}
+        className="library-book"
+        href={book.url}
+        key={book.id}
+        rel="noopener noreferrer"
+        target="_blank"
+      >
+        {content}
+      </a>
+    ) : (
+      <article className="library-book library-book-planned" key={book.id}>
+        {content}
+      </article>
+    );
+  };
+
   const renderFutureLab = (lab: (typeof futureLabs)[number]) => {
     const content = (
       <>
+        <span className="future-node" aria-hidden="true" />
         <span className="future-glyph" aria-hidden="true">{lab.glyph}</span>
         <strong>{lab.title}</strong>
       </>
@@ -45,7 +98,13 @@ export default function Home() {
         <span className="future-arrow" aria-hidden="true">↗</span>
       </a>
     ) : (
-      <span className="future-lab" key={lab.id}>{content}</span>
+      <span className="future-lab future-lab-planned" key={lab.id}>
+        {content}
+        <span className="future-status future-status-planned" aria-label="Připravujeme">
+          <span className="future-status-dot" aria-hidden="true" />
+          Připravujeme
+        </span>
+      </span>
     );
   };
 
@@ -94,7 +153,7 @@ export default function Home() {
             <p className="hero-slogan" aria-label={siteConfig.slogan}>
               <span>Explore.</span> <span>Learn.</span> <span>Build.</span>
             </p>
-            <p className="hero-lead">Digitální prostor pro výuku, experimentování a objevování.</p>
+            <p className="hero-lead">Digitální prostor pro výuku, experimentování, čtení a objevování.</p>
             <a className="hero-link" href="#projects">
               Prohlédnout projekty <span aria-hidden="true">↓</span>
             </a>
@@ -187,7 +246,7 @@ export default function Home() {
             <p className="eyebrow">Vyber si oblast</p>
             <h2 id="zones-title">Kam se dnes vydáš?</h2>
           </div>
-          <p>Čtyři interaktivní projekty pro výuku, procvičování i vlastní objevování.</p>
+          <p>Interaktivní projekty pro výuku, procvičování, čtení i vlastní objevování.</p>
         </div>
 
         <div className="network-core" aria-hidden="true"><span className="core-node" /></div>
@@ -264,40 +323,77 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="library-section" id="library" aria-labelledby="library-title">
+        <div className="library-heading">
+          <div className="library-intro">
+            <p className="eyebrow">INTERACTIVE READING</p>
+            <h2 id="library-title">SchoolLab Library</h2>
+          </div>
+          <p>Klasická literatura jako interaktivní čtenářské dobrodružství. Čti, rozhoduj se a sleduj, jak tvoje volby mění příběh.</p>
+        </div>
+
+        <div className="library-shelf" aria-label="Knihy ve SchoolLab Library">
+          <div className="library-books">
+            {libraryBooks.filter((book) => book.status === "active" && book.url).map(renderLibraryBook)}
+          </div>
+
+          <aside className="library-coming-soon" aria-labelledby="library-coming-title">
+            <div className="library-spines" aria-hidden="true">
+              <span className="library-spine spine-one" />
+              <span className="library-spine spine-two" />
+              <span className="library-spine spine-three" />
+              <span className="library-spine spine-four" />
+            </div>
+            <p className="library-coming-kicker">DALŠÍ TITULY PŘIPRAVUJEME</p>
+            <h3 id="library-coming-title">Knihovna se bude postupně rozrůstat.</h3>
+            <p>Další interaktivní svazky přibudou na polici postupně.</p>
+          </aside>
+
+          <div className="library-shelf-line" aria-hidden="true" />
+        </div>
+      </section>
+
       <section className="future-section" aria-labelledby="future-title">
         <div className="future-intro">
+          <div className="future-expansion-mark" aria-hidden="true">
+            <span className="future-expansion-code">EXPANSION NODE / 05</span>
+            <span className="future-expansion-track"><span /></span>
+          </div>
           <p className="eyebrow">SchoolLab se rozšiřuje</p>
           <h2 id="future-title">Nové projekty přibývají.</h2>
           <p>Některé už můžeš otevřít, další oblasti postupně připravujeme.</p>
         </div>
-        <div className="future-groups">
-          <div className="future-group" role="group" aria-labelledby="future-active-title">
-            <div className="future-group-heading">
-              <div>
-                <p className="future-group-kicker">Aktivní projekty</p>
-                <h3 id="future-active-title">Dostupné nyní</h3>
+        <div className="future-network">
+          <span className="future-network-rail" aria-hidden="true"><span /></span>
+          <div className="future-groups">
+            <div className="future-group" role="group" aria-labelledby="future-active-title">
+              <div className="future-group-heading">
+                <div>
+                  <p className="future-group-kicker">Aktivní projekty</p>
+                  <h3 id="future-active-title">Dostupné nyní</h3>
+                </div>
+                <span className="future-group-count" aria-label={`${activeFutureLabs.length} aktivní projekty`}>
+                  {String(activeFutureLabs.length).padStart(2, "0")}
+                </span>
               </div>
-              <span className="future-group-count" aria-label={`${activeFutureLabs.length} aktivní projekty`}>
-                {String(activeFutureLabs.length).padStart(2, "0")}
-              </span>
+              <div className="future-list" aria-label="Dostupné projekty">
+                {activeFutureLabs.map(renderFutureLab)}
+              </div>
             </div>
-            <div className="future-list" aria-label="Dostupné projekty">
-              {activeFutureLabs.map(renderFutureLab)}
-            </div>
-          </div>
 
-          <div className="future-group future-group-planned" role="group" aria-labelledby="future-planned-title">
-            <div className="future-group-heading">
-              <div>
-                <p className="future-group-kicker">Další směry</p>
-                <h3 id="future-planned-title">Připravujeme</h3>
+            <div className="future-group future-group-planned" role="group" aria-labelledby="future-planned-title">
+              <div className="future-group-heading">
+                <div>
+                  <p className="future-group-kicker">Další směry</p>
+                  <h3 id="future-planned-title">Připravujeme</h3>
+                </div>
+                <span className="future-group-count" aria-label={`${plannedFutureLabs.length} připravované projekty`}>
+                  {String(plannedFutureLabs.length).padStart(2, "0")}
+                </span>
               </div>
-              <span className="future-group-count" aria-label={`${plannedFutureLabs.length} připravované projekty`}>
-                {String(plannedFutureLabs.length).padStart(2, "0")}
-              </span>
-            </div>
-            <div className="future-list" aria-label="Připravované projekty">
-              {plannedFutureLabs.map(renderFutureLab)}
+              <div className="future-list" aria-label="Připravované projekty">
+                {plannedFutureLabs.map(renderFutureLab)}
+              </div>
             </div>
           </div>
         </div>

@@ -1,7 +1,7 @@
 export const siteConfig = {
   name: "SCHOOLLAB",
   slogan: "Explore. Learn. Build.",
-  description: "Jeden prostor pro výuku, experimentování a objevování. Vyber si oblast a vstup do projektu.",
+  description: "Jeden prostor pro výuku, experimentování, čtení a objevování. Vyber si oblast a vstup do projektu.",
 } as const;
 
 export const categoryConfig = {
@@ -26,7 +26,7 @@ export type Project = {
   category: ProjectCategory;
   description: string;
   tags: string[];
-  url: string;
+  url: string | null;
   status: "active" | "planned";
   visual: string;
   visualLabel: string;
@@ -90,6 +90,36 @@ export const projects: Project[] = [
     visualLabel: "R₁ / R₂",
     cta: "Otevřít laboratoř",
     order: 4,
+  },
+];
+
+export type LibraryBook = {
+  id: string;
+  number: number;
+  title: string;
+  subtitle: string;
+  author: string;
+  level: string;
+  language: string;
+  description: string;
+  tags: string[];
+  url: string;
+  status: "active" | "planned";
+};
+
+export const libraryBooks: LibraryBook[] = [
+  {
+    id: "the-portraits-secret",
+    number: 1,
+    title: "The Portrait's Secret",
+    subtitle: "A Dorian Gray Adventure",
+    author: "Oscar Wilde",
+    level: "B1 English",
+    language: "English",
+    description: "Interaktivní adaptace klasického románu s rozhodováním, slovní zásobou a režimem pro učitele.",
+    tags: ["B1", "Interactive Reading", "Classic Literature"],
+    url: "https://dorian-gray-adventure-edu-b1.netlify.app/",
+    status: "active",
   },
 ];
 
