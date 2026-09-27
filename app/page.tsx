@@ -405,7 +405,10 @@ export default function Home() {
           <strong>{siteConfig.name}</strong>
         </div>
         <p>{siteConfig.slogan}</p>
-        <p>Digital Learning Projects</p>
+        <div className="footer-meta">
+          <p>Digital Learning Projects</p>
+          <p className="footer-signature">AI + 👤 | HUMAN IN THE LOOP</p>
+        </div>
       </footer>
     </main>
   );
