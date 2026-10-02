@@ -104,6 +104,7 @@ export type LibraryBook = {
   description: string;
   tags: string[];
   url: string;
+  trailer?: string;
   status: "active" | "planned";
 };
 
@@ -119,6 +120,7 @@ export const libraryBooks: LibraryBook[] = [
     description: "Interaktivní adaptace klasického románu s rozhodováním, slovní zásobou a režimem pro učitele.",
     tags: ["B1", "Interactive Reading", "Classic Literature"],
     url: "https://dorian-gray-adventure-edu-b1.netlify.app/",
+    trailer: "/media/the-portraits-secret-trailer.mp4",
     status: "active",
   },
 ];

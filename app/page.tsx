@@ -46,25 +46,38 @@ export default function Home() {
           <div className="library-book-tags">
             {book.tags.map((tag) => <span key={tag}>{tag}</span>)}
           </div>
-          <span className="library-book-cta">
+          <a
+            aria-label={`${book.title} – otevřít knihu`}
+            className="library-book-cta"
+            href={book.url}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             <span>Otevřít knihu</span>
             <span aria-hidden="true">↗</span>
-          </span>
+          </a>
         </div>
+        {book.trailer && (
+          <div className="library-book-trailer">
+            <p className="library-book-trailer-label">BOOK TRAILER · 00:36</p>
+            {/* The supplied trailer has no caption asset. */}
+            {/* eslint-disable-next-line jsx-a11y/media-has-caption -- no captions were supplied with the source video */}
+            <video
+              aria-label={`${book.title} – book trailer`}
+              controls
+              playsInline
+              preload="metadata"
+              src={book.trailer}
+            />
+          </div>
+        )}
       </>
     );
 
     return book.status === "active" && book.url ? (
-      <a
-        aria-label={`${book.title} – otevřít knihu`}
-        className="library-book"
-        href={book.url}
-        key={book.id}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
+      <article className="library-book" key={book.id}>
         {content}
-      </a>
+      </article>
     ) : (
       <article className="library-book library-book-planned" key={book.id}>
         {content}
