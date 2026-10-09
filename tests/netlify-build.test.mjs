@@ -27,6 +27,10 @@ test("publishes all required static assets", async () => {
   await Promise.all([
     access(new URL("favicon.svg", outputRoot)),
     access(new URL("og.png", outputRoot)),
+    access(new URL("media/pygmalion-book-cover-b2.png", outputRoot)),
+    access(new URL("media/pygmalion-book-cover-b2.webp", outputRoot)),
+    access(new URL("media/pygmalion-trailer-v18-final-higgins.mp4", outputRoot)),
+    access(new URL("media/the-portraits-secret-trailer.mp4", outputRoot)),
     ...assetPaths.map((path) => access(new URL(`.${path}`, outputRoot))),
   ]);
 });

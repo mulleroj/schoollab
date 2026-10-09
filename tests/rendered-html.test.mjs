@@ -60,6 +60,33 @@ test("server-renders the complete SchoolLab project hub", async () => {
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape|react-loading-skeleton/i);
 });
 
+test("renders both active Library books with their approved links, covers, and trailer durations", async () => {
+  const response = await render();
+  const html = await response.text();
+  const [page, data, styles] = await Promise.all([
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/data/projects.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(html, /The Portrait(?:'|&#x27;)s Secret/);
+  assert.match(html, /href="https:\/\/dorian-gray-adventure-edu-b1\.netlify\.app\/"[^>]*rel="noopener noreferrer"[^>]*target="_blank"/);
+  assert.match(html, /class="book-cover" aria-hidden="true"><div class="book-cover-frame">/);
+  assert.match(html, /<video(?=[^>]*src="\/media\/the-portraits-secret-trailer\.mp4")(?=[^>]*controls)(?=[^>]*preload="metadata")[^>]*>/);
+  assert.match(html, /BOOK TRAILER(?:<!-- -->)? · 00:36/);
+  assert.match(styles, /\.book-cover\s*\{/);
+
+  assert.match(html, /<h3>Pygmalion<\/h3>/);
+  assert.match(html, /href="https:\/\/pygmalionbook\.netlify\.app\/"[^>]*rel="noopener noreferrer"[^>]*target="_blank"/);
+  assert.match(html, /src="\/media\/pygmalion-book-cover-b2\.webp" alt="" loading="lazy" decoding="async"/);
+  assert.match(html, /<video(?=[^>]*src="\/media\/pygmalion-trailer-v18-final-higgins\.mp4")(?=[^>]*controls)(?=[^>]*preload="metadata")[^>]*>/);
+  assert.doesNotMatch(html, /<video\b[^>]*\bautoplay(?:\s|=|>)/i);
+  assert.match(html, /BOOK TRAILER(?:<!-- -->)? · 00:39/);
+  assert.match(data, /trailerDurationSeconds: 36\.432/);
+  assert.match(data, /trailerDurationSeconds: 39\.173/);
+  assert.match(page, /formatTrailerDuration\(book\.trailerDurationSeconds\)/);
+});
+
 test("keeps SchoolLab configurable and removes starter-only UI", async () => {
   const [page, layout, data, styles, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),

@@ -22,18 +22,29 @@ export default function Home() {
   const activeFutureLabs = futureLabs.filter((lab) => lab.url !== null);
   const plannedFutureLabs = futureLabs.filter((lab) => lab.url === null);
 
+  const formatTrailerDuration = (durationSeconds: number) => {
+    const elapsedSeconds = Math.floor(durationSeconds);
+    const minutes = String(Math.floor(elapsedSeconds / 60)).padStart(2, "0");
+    const seconds = String(elapsedSeconds % 60).padStart(2, "0");
+    return `${minutes}:${seconds}`;
+  };
+
   const renderLibraryBook = (book: LibraryBook) => {
     const content = (
       <>
-        <div className="book-cover" aria-hidden="true">
-          <div className="book-cover-frame">
-            <span className="book-cover-kicker">TITUL {String(book.number).padStart(2, "0")}</span>
-            <span className="book-cover-ornament">✦</span>
-            <strong className="book-cover-title">{book.title}</strong>
-            <span className="book-cover-rule" />
-            <span className="book-cover-subtitle">{book.subtitle}</span>
-            <span className="book-cover-author">{book.author}</span>
-          </div>
+        <div className={`book-cover${book.cover ? " book-cover-image" : ""}`} aria-hidden="true">
+          {book.cover ? (
+            <img src={book.cover} alt="" loading="lazy" decoding="async" />
+          ) : (
+            <div className="book-cover-frame">
+              <span className="book-cover-kicker">TITUL {String(book.number).padStart(2, "0")}</span>
+              <span className="book-cover-ornament">✦</span>
+              <strong className="book-cover-title">{book.title}</strong>
+              <span className="book-cover-rule" />
+              <span className="book-cover-subtitle">{book.subtitle}</span>
+              <span className="book-cover-author">{book.author}</span>
+            </div>
+          )}
         </div>
         <div className="library-book-content">
           <div className="library-book-meta">
@@ -59,7 +70,9 @@ export default function Home() {
         </div>
         {book.trailer && (
           <div className="library-book-trailer">
-            <p className="library-book-trailer-label">BOOK TRAILER · 00:36</p>
+            <p className="library-book-trailer-label">
+              BOOK TRAILER{book.trailerDurationSeconds == null ? "" : ` · ${formatTrailerDuration(book.trailerDurationSeconds)}`}
+            </p>
             {/* The supplied trailer has no caption asset. */}
             {/* eslint-disable-next-line jsx-a11y/media-has-caption -- no captions were supplied with the source video */}
             <video

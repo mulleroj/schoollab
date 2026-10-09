@@ -104,7 +104,9 @@ export type LibraryBook = {
   description: string;
   tags: string[];
   url: string;
+  cover?: string;
   trailer?: string;
+  trailerDurationSeconds?: number;
   status: "active" | "planned";
 };
 
@@ -121,6 +123,23 @@ export const libraryBooks: LibraryBook[] = [
     tags: ["B1", "Interactive Reading", "Classic Literature"],
     url: "https://dorian-gray-adventure-edu-b1.netlify.app/",
     trailer: "/media/the-portraits-secret-trailer.mp4",
+    trailerDurationSeconds: 36.432,
+    status: "active",
+  },
+  {
+    id: "pygmalion",
+    number: 2,
+    title: "Pygmalion",
+    subtitle: "An Illustrated Interactive Storybook",
+    author: "George Bernard Shaw",
+    level: "A2+/B1 English",
+    language: "English",
+    description: "Interaktivní ilustrovaná adaptace klasické hry s rozhodováním, poslechem, jazykovými výzvami a režimem pro učitele.",
+    tags: ["A2+/B1", "Interactive Reading", "Listening", "Classic Literature"],
+    url: "https://pygmalionbook.netlify.app/",
+    cover: "/media/pygmalion-book-cover-b2.webp",
+    trailer: "/media/pygmalion-trailer-v18-final-higgins.mp4",
+    trailerDurationSeconds: 39.173,
     status: "active",
   },
 ];
