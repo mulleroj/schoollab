@@ -34,6 +34,17 @@ test("server-renders the complete SchoolLab project hub", async () => {
   assert.match(html, /class="brand-connection" aria-hidden="true"/);
   assert.match(html, /Kam se dnes vydáš/);
   assert.match(html, /Prohlédnout projekty/);
+  assert.match(html, /<section class="study-tools" id="study-tools" aria-labelledby="study-tools-title">/);
+  assert.match(html, /<h2 id="study-tools-title">Můj AI učitel – Nauč mě to!<\/h2>/);
+  assert.match(html, /href="https:\/\/muj-ai-ucitel\.netlify\.app\/"[^>]*rel="noopener noreferrer"[^>]*target="_blank"/);
+  assert.ok(html.indexOf('id="study-tools"') < html.indexOf("SchoolLab Library"), "Study Tools must appear before Library");
+  assert.match(html, /STUDY TOOLS \/ 01/);
+  assert.match(html, /Nerozumíš učivu\? Čeká tě test\? Potřebuješ si něco zapamatovat\?/);
+  assert.match(html, /Pochopit učivo/);
+  assert.match(html, /Procvičit znalosti/);
+  assert.match(html, /Zapamatovat si/);
+  assert.match(html, /Připravit se na test/);
+  assert.match(html, /Pro všechny předměty · Funguje s bezplatným ChatGPT nebo Gemini/);
   assert.match(html, /SchoolLab Library/);
   assert.match(html, /The Portrait(?:'|&#x27;)s Secret/);
   assert.match(html, /https:\/\/dorian-gray-adventure-edu-b1\.netlify\.app\//);
@@ -85,6 +96,13 @@ test("renders both active Library books with their approved links, covers, and t
   assert.match(data, /trailerDurationSeconds: 36\.432/);
   assert.match(data, /trailerDurationSeconds: 39\.173/);
   assert.match(page, /formatTrailerDuration\(book\.trailerDurationSeconds\)/);
+});
+
+test("keeps the AI study tool independent from English and Electro categories", async () => {
+  const data = await readFile(new URL("../app/data/projects.ts", import.meta.url), "utf8");
+  assert.match(data, /export const studyTool = \{/);
+  assert.match(data, /url: "https:\/\/muj-ai-ucitel\.netlify\.app\/"/);
+  assert.doesNotMatch(data.match(/export const projects: Project\[\] = \[([\s\S]*?)\n\];/)?.[1] ?? "", /my-ai-teacher|muj-ai-ucitel/);
 });
 
 test("keeps SchoolLab configurable and removes starter-only UI", async () => {

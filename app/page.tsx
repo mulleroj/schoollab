@@ -7,6 +7,7 @@ import {
   libraryBooks,
   projects,
   siteConfig,
+  studyTool,
   type LibraryBook,
   type ProjectCategory,
 } from "./data/projects";
@@ -347,6 +348,38 @@ export default function Home() {
             );
           })}
         </div>
+      </section>
+
+      <section className="study-tools" id="study-tools" aria-labelledby="study-tools-title">
+        <article className="study-tool-card">
+          <div className="study-tool-copy">
+            <p className="study-tool-kicker">{studyTool.label}</p>
+            <h2 id="study-tools-title">{studyTool.title}</h2>
+            <p className="study-tool-description">{studyTool.description}</p>
+            <ul className="study-tool-benefits" aria-label="Co můžeš se studijním promptem dělat">
+              {studyTool.benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}
+            </ul>
+            <div className="study-tool-actions">
+              <a className="study-tool-cta" href={studyTool.url} rel="noopener noreferrer" target="_blank">
+                <span>{studyTool.cta}</span><span aria-hidden="true">↗</span>
+              </a>
+              <p>{studyTool.note}</p>
+            </div>
+          </div>
+          <div className="study-tool-visual" aria-hidden="true">
+            <svg viewBox="0 0 240 200" focusable="false">
+              <path className="study-orbit" d="M35 101c0-39 38-70 85-70s85 31 85 70-38 70-85 70-85-31-85-70Z" />
+              <path className="study-book" d="M53 63c23-8 45-5 67 9v91c-22-14-44-17-67-9V63Zm134 0c-23-8-45-5-67 9v91c22-14 44-17 67-9V63Z" />
+              <path className="study-book-lines" d="M67 80c14-3 27-1 39 5m-39 9c14-3 27-1 39 5m28-9c12-6 25-8 39-5m-39 19c12-6 25-8 39-5" />
+              <circle className="study-spark" cx="120" cy="41" r="5" />
+              <circle className="study-node" cx="44" cy="123" r="4" />
+              <circle className="study-node" cx="196" cy="123" r="4" />
+              <path className="study-connectors" d="m48 122 13-7m131 7-13-7M120 51v13" />
+              <path className="study-brain" d="M106 44c-8-8-21-2-20 8-9 4-8 17 1 20 1 10 14 13 20 5m7-33c8-8 21-2 20 8 9 4 8 17-1 20-1 10-14 13-20 5m-2-31v31" />
+            </svg>
+            <span>LEARN · PRACTICE · REMEMBER</span>
+          </div>
+        </article>
       </section>
 
       <section className="library-section" id="library" aria-labelledby="library-title">

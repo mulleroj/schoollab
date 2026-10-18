@@ -4,6 +4,18 @@ export const siteConfig = {
   description: "Jeden prostor pro výuku, experimentování, čtení a objevování. Vyber si oblast a vstup do projektu.",
 } as const;
 
+export const studyTool = {
+  id: "my-ai-teacher",
+  label: "STUDY TOOLS / 01",
+  title: "Můj AI učitel – Nauč mě to!",
+  description:
+    "Nerozumíš učivu? Čeká tě test? Potřebuješ si něco zapamatovat? Zkopíruj si studijní prompt do ChatGPT nebo Gemini a nech AI, aby tě provedla učením krok za krokem.",
+  benefits: ["Pochopit učivo", "Procvičit znalosti", "Zapamatovat si", "Připravit se na test"],
+  url: "https://muj-ai-ucitel.netlify.app/",
+  cta: "Otevřít studijní prompt",
+  note: "Pro všechny předměty · Funguje s bezplatným ChatGPT nebo Gemini",
+} as const;
+
 export const categoryConfig = {
   english: {
     label: "Jazyk • komunikace • praxe",
