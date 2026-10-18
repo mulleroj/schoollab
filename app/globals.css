@@ -765,15 +765,15 @@ footer {
 @keyframes study-knowledge-flow {
   0%, 2% { stroke-dashoffset: 0; opacity: 0; }
   5% { opacity: 1; }
-  25% { stroke-dashoffset: -100; opacity: 1; }
-  31%, 100% { stroke-dashoffset: -100; opacity: 0; }
+  25% { stroke-dashoffset: -82; opacity: 1; }
+  31%, 100% { stroke-dashoffset: -82; opacity: 0; }
 }
 
 @keyframes study-knowledge-rush {
   0% { stroke-dashoffset: 0; opacity: 0; }
   8% { opacity: 1; }
-  86% { stroke-dashoffset: -100; opacity: 1; }
-  100% { stroke-dashoffset: -100; opacity: 0; }
+  86% { stroke-dashoffset: -82; opacity: 1; }
+  100% { stroke-dashoffset: -82; opacity: 0; }
 }
 
 @keyframes study-orbit-drift {

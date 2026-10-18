@@ -126,7 +126,8 @@ test("activates the study-tool SVG sequence only when powered and at least 30 pe
   assert.match(styles, /@keyframes study-brain-breathe/);
   assert.match(styles, /@keyframes study-knowledge-flow/);
   assert.match(styles, /\.study-flow-pulse \{[^}]*stroke-dasharray: 18 82/);
-  assert.match(styles, /stroke-dashoffset: -100; opacity: 1/);
+  assert.match(styles, /stroke-dashoffset: -82; opacity: 1/);
+  assert.match(styles, /animation-duration: 1\.8s;\s*animation-delay: 0s;\s*animation-iteration-count: infinite/);
   assert.match(styles, /@keyframes study-orbit-drift/);
   assert.match(styles, /@keyframes study-gold-pulse/);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?study-tool-visual \*/);
