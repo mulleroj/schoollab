@@ -389,7 +389,7 @@ export default function Home() {
           <div className="study-tool-visual" aria-hidden="true">
             <svg viewBox="0 0 240 200" focusable="false">
               <path className="study-orbit" d="M35 101c0-39 38-70 85-70s85 31 85 70-38 70-85 70-85-31-85-70Z" />
-              <path className="study-book" d="M53 63c23-8 45-5 67 9v91c-22-14-44-17-67-9V63Zm134 0c-23-8-45-5-67 9v91c22-14 44-17 67-9V63Z" />
+              <path className="study-book" pathLength="1" d="M53 63c23-8 45-5 67 9v91c-22-14-44-17-67-9V63Zm134 0c-23-8-45-5-67 9v91c22-14 44-17 67-9V63Z" />
               <path className="study-book-lines" d="M67 80c14-3 27-1 39 5m-39 9c14-3 27-1 39 5m28-9c12-6 25-8 39-5m-39 19c12-6 25-8 39-5" />
               <circle className="study-spark" cx="120" cy="41" r="5" />
               <circle className="study-node" cx="44" cy="123" r="4" />

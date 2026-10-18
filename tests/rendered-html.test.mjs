@@ -114,6 +114,7 @@ test("activates study-tool SVG motion only when powered and visible", async () =
   assert.match(page, /new IntersectionObserver\(\(\[entry\]\) => \{\s*setStudyToolsVisible\(entry\.isIntersecting\);/);
   assert.match(page, /observer\.observe\(section\);\s*return \(\) => observer\.disconnect\(\);/);
   assert.match(page, /data-visible=\{studyToolsVisible\}/);
+  assert.match(page, /className="study-book" pathLength="1"/);
   assert.match(page, /className="study-connectors study-connector-left"/);
   assert.match(styles, /\.site-shell\[data-powered="true"\] \.study-tools\[data-visible="true"\] \.study-book/);
   assert.match(styles, /@keyframes study-book-draw/);
