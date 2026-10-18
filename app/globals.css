@@ -733,10 +733,12 @@ footer {
 
 .site-shell[data-powered="true"] .study-tools[data-visible="true"] .study-tool-card:is(:hover, :focus-within) .study-flow-pulse {
   animation-name: study-knowledge-rush;
-  animation-duration: 1.1s;
+  animation-duration: 1.8s;
   animation-delay: 0s;
-  animation-iteration-count: 1;
+  animation-iteration-count: infinite;
 }
+
+.site-shell[data-powered="true"] .study-tools[data-visible="true"] .study-tool-card:is(:hover, :focus-within) .study-flow-pulse-right { animation-delay: .45s; }
 
 @keyframes study-book-draw {
   0%, 8% { stroke-dashoffset: 1; opacity: .1; }
