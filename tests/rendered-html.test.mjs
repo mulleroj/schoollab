@@ -105,24 +105,30 @@ test("keeps the AI study tool independent from English and Electro categories", 
   assert.doesNotMatch(data.match(/export const projects: Project\[\] = \[([\s\S]*?)\n\];/)?.[1] ?? "", /my-ai-teacher|muj-ai-ucitel/);
 });
 
-test("activates study-tool SVG motion only when powered and visible", async () => {
+test("activates the study-tool SVG sequence only when powered and at least 30 percent visible", async () => {
   const [page, styles] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
   ]);
 
-  assert.match(page, /new IntersectionObserver\(\(\[entry\]\) => \{\s*setStudyToolsVisible\(entry\.isIntersecting\);/);
+  assert.match(page, /new IntersectionObserver\(\(\[entry\]\) => \{\s*setStudyToolsVisible\(entry\.intersectionRatio >= 0\.3\);\s*\}, \{ threshold: \[0, 0\.3\] \}\);/);
   assert.match(page, /observer\.observe\(section\);\s*return \(\) => observer\.disconnect\(\);/);
   assert.match(page, /data-visible=\{studyToolsVisible\}/);
   assert.match(page, /className="study-book" pathLength="1"/);
-  assert.match(page, /className="study-connectors study-connector-left"/);
-  assert.match(styles, /\.site-shell\[data-powered="true"\] \.study-tools\[data-visible="true"\] \.study-book/);
+  assert.match(page, /className="study-book-trace" pathLength="1"/);
+  assert.match(page, /className="study-flow-rail study-flow-left"/);
+  assert.equal((page.match(/className="study-pulse /g) ?? []).length, 4);
+  assert.match(styles, /\.site-shell\[data-powered="true"\] \.study-tools\[data-visible="true"\] \.study-book-trace/);
   assert.match(styles, /@keyframes study-book-draw/);
+  assert.match(styles, /@keyframes study-lines-wake/);
   assert.match(styles, /@keyframes study-brain-wake/);
-  assert.match(styles, /@keyframes study-knowledge-impulse/);
+  assert.match(styles, /@keyframes study-brain-breathe/);
+  assert.match(styles, /@keyframes study-knowledge-flow/);
+  assert.match(styles, /offset-path: path\("M106 69 C96 78 91 88 87 98 C82 109 67 115 48 122"\)/);
   assert.match(styles, /@keyframes study-orbit-drift/);
   assert.match(styles, /@keyframes study-gold-pulse/);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?study-tool-visual \*/);
+  assert.match(styles, /\.study-pulse \{ display: none !important; \}/);
   assert.match(styles, /\.study-tool-visual \{[^}]*pointer-events: none/);
 });
 

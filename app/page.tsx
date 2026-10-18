@@ -23,8 +23,8 @@ export default function Home() {
     if (!section || typeof IntersectionObserver === "undefined") return;
 
     const observer = new IntersectionObserver(([entry]) => {
-      setStudyToolsVisible(entry.isIntersecting);
-    }, { threshold: 0.01 });
+      setStudyToolsVisible(entry.intersectionRatio >= 0.3);
+    }, { threshold: [0, 0.3] });
 
     observer.observe(section);
     return () => observer.disconnect();
@@ -390,13 +390,17 @@ export default function Home() {
             <svg viewBox="0 0 240 200" focusable="false">
               <path className="study-orbit" d="M35 101c0-39 38-70 85-70s85 31 85 70-38 70-85 70-85-31-85-70Z" />
               <path className="study-book" pathLength="1" d="M53 63c23-8 45-5 67 9v91c-22-14-44-17-67-9V63Zm134 0c-23-8-45-5-67 9v91c22-14 44-17 67-9V63Z" />
+              <path className="study-book-trace" pathLength="1" d="M53 63c23-8 45-5 67 9v91c-22-14-44-17-67-9V63Zm134 0c-23-8-45-5-67 9v91c22-14 44-17 67-9V63Z" />
               <path className="study-book-lines" d="M67 80c14-3 27-1 39 5m-39 9c14-3 27-1 39 5m28-9c12-6 25-8 39-5m-39 19c12-6 25-8 39-5" />
               <circle className="study-spark" cx="120" cy="41" r="5" />
               <circle className="study-node" cx="44" cy="123" r="4" />
               <circle className="study-node" cx="196" cy="123" r="4" />
-              <path className="study-connectors study-connector-left" d="M48 122 61 115" pathLength="1" />
-              <path className="study-connectors study-connector-right" d="M192 122 179 115" pathLength="1" />
-              <path className="study-connectors study-connector-brain" d="M120 51v13" pathLength="1" />
+              <path className="study-flow-rail study-flow-left" d="M106 69C96 78 91 88 87 98c-5 11-20 17-39 24" />
+              <path className="study-flow-rail study-flow-right" d="M134 69c10 9 15 19 19 29 5 11 20 17 39 24" />
+              <circle className="study-pulse study-pulse-left study-pulse-cyan" r="2.7" />
+              <circle className="study-pulse study-pulse-left study-pulse-gold" r="2.5" />
+              <circle className="study-pulse study-pulse-right study-pulse-cyan" r="2.7" />
+              <circle className="study-pulse study-pulse-right study-pulse-gold" r="2.5" />
               <path className="study-brain" d="M106 44c-8-8-21-2-20 8-9 4-8 17 1 20 1 10 14 13 20 5m7-33c8-8 21-2 20 8 9 4 8 17-1 20-1 10-14 13-20 5m-2-31v31" />
             </svg>
             <span>LEARN · PRACTICE · REMEMBER</span>
