@@ -124,6 +124,7 @@ test("activates the study-tool SVG sequence only when powered and at least 30 pe
   assert.match(styles, /@keyframes study-brain-wake/);
   assert.match(styles, /@keyframes study-brain-breathe/);
   assert.match(styles, /@keyframes study-knowledge-flow/);
+  assert.match(styles, /offset-position: center;[^}]*offset-anchor: center/);
   assert.match(styles, /offset-path: path\("M106 69 C96 78 91 88 87 98 C82 109 67 115 48 122"\)/);
   assert.match(styles, /@keyframes study-orbit-drift/);
   assert.match(styles, /@keyframes study-gold-pulse/);

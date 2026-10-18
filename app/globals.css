@@ -689,7 +689,7 @@ footer {
 .study-book-trace { fill: none; stroke: #c9fff8; stroke-linejoin: round; stroke-linecap: round; stroke-width: 3.2; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; filter: drop-shadow(0 0 5px rgba(86,212,221,.9)); }
 .study-book-lines { fill: none; stroke: rgba(145,228,220,.56); stroke-linecap: round; stroke-width: 1.7; }
 .study-flow-rail { fill: none; stroke: rgba(145,228,220,.56); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
-.study-pulse { visibility: hidden; fill: #b8fff7; filter: drop-shadow(0 0 4px rgba(86,212,221,.98)) drop-shadow(0 0 8px rgba(86,212,221,.68)); offset-rotate: 0deg; offset-anchor: center; }
+.study-pulse { visibility: hidden; fill: #b8fff7; filter: drop-shadow(0 0 4px rgba(86,212,221,.98)) drop-shadow(0 0 8px rgba(86,212,221,.68)); offset-position: center; offset-rotate: 0deg; offset-anchor: center; }
 .study-pulse-left { offset-path: path("M106 69 C96 78 91 88 87 98 C82 109 67 115 48 122"); }
 .study-pulse-right { offset-path: path("M134 69 C144 78 149 88 153 98 C158 109 173 115 192 122"); }
 .study-pulse-gold { fill: #ffd36f; filter: drop-shadow(0 0 4px rgba(239,183,75,.98)) drop-shadow(0 0 8px rgba(239,183,75,.7)); }
