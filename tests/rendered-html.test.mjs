@@ -118,15 +118,15 @@ test("activates the study-tool SVG sequence only when powered and at least 30 pe
   assert.match(page, /className="study-book-trace" pathLength="1"/);
   assert.match(page, /className="study-flow-rail study-flow-left"/);
   assert.equal((page.match(/className="study-flow-pulse /g) ?? []).length, 2);
-  assert.match(page, /className="study-flow-pulse study-flow-pulse-left study-flow-pulse-cyan"[^>]*pathLength="1"/);
+  assert.match(page, /className="study-flow-pulse study-flow-pulse-left study-flow-pulse-cyan"[^>]*pathLength="100"/);
   assert.match(styles, /\.site-shell\[data-powered="true"\] \.study-tools\[data-visible="true"\] \.study-book-trace/);
   assert.match(styles, /@keyframes study-book-draw/);
   assert.match(styles, /@keyframes study-lines-wake/);
   assert.match(styles, /@keyframes study-brain-wake/);
   assert.match(styles, /@keyframes study-brain-breathe/);
   assert.match(styles, /@keyframes study-knowledge-flow/);
-  assert.match(styles, /\.study-flow-pulse \{[^}]*stroke-dasharray: \.18 \.82/);
-  assert.match(styles, /stroke-dashoffset: -1; opacity: 1/);
+  assert.match(styles, /\.study-flow-pulse \{[^}]*stroke-dasharray: 18 82/);
+  assert.match(styles, /stroke-dashoffset: -100; opacity: 1/);
   assert.match(styles, /@keyframes study-orbit-drift/);
   assert.match(styles, /@keyframes study-gold-pulse/);
   assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?study-tool-visual \*/);

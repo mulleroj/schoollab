@@ -689,7 +689,7 @@ footer {
 .study-book-trace { fill: none; stroke: #c9fff8; stroke-linejoin: round; stroke-linecap: round; stroke-width: 3.2; stroke-dasharray: 1; stroke-dashoffset: 1; opacity: 0; filter: drop-shadow(0 0 5px rgba(86,212,221,.9)); }
 .study-book-lines { fill: none; stroke: rgba(145,228,220,.56); stroke-linecap: round; stroke-width: 1.7; }
 .study-flow-rail { fill: none; stroke: rgba(145,228,220,.56); stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
-.study-flow-pulse { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 4.8; stroke-dasharray: .18 .82; stroke-dashoffset: 0; opacity: 0; }
+.study-flow-pulse { fill: none; stroke-linecap: round; stroke-linejoin: round; stroke-width: 4.8; stroke-dasharray: 18 82; stroke-dashoffset: 0; opacity: 0; }
 .study-flow-pulse-cyan { stroke: #56d4dd; filter: drop-shadow(0 0 7px rgba(86,212,221,1)); }
 .study-flow-pulse-gold { stroke: #ffd36f; filter: drop-shadow(0 0 6px rgba(239,183,75,1)); }
 .study-brain { fill: rgba(86,212,221,.2); stroke: #a9fff4; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2; }
@@ -763,15 +763,15 @@ footer {
 @keyframes study-knowledge-flow {
   0%, 2% { stroke-dashoffset: 0; opacity: 0; }
   5% { opacity: 1; }
-  25% { stroke-dashoffset: -1; opacity: 1; }
-  31%, 100% { stroke-dashoffset: -1; opacity: 0; }
+  25% { stroke-dashoffset: -100; opacity: 1; }
+  31%, 100% { stroke-dashoffset: -100; opacity: 0; }
 }
 
 @keyframes study-knowledge-rush {
   0% { stroke-dashoffset: 0; opacity: 0; }
   8% { opacity: 1; }
-  86% { stroke-dashoffset: -1; opacity: 1; }
-  100% { stroke-dashoffset: -1; opacity: 0; }
+  86% { stroke-dashoffset: -100; opacity: 1; }
+  100% { stroke-dashoffset: -100; opacity: 0; }
 }
 
 @keyframes study-orbit-drift {
