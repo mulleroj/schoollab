@@ -34,7 +34,7 @@ test("server-renders the complete SchoolLab project hub", async () => {
   assert.match(html, /class="brand-connection" aria-hidden="true"/);
   assert.match(html, /Kam se dnes vydáš/);
   assert.match(html, /Prohlédnout projekty/);
-  assert.match(html, /<section class="study-tools" id="study-tools" aria-labelledby="study-tools-title">/);
+  assert.match(html, /<section class="study-tools"(?=[^>]*id="study-tools")(?=[^>]*aria-labelledby="study-tools-title")(?=[^>]*data-visible="false")[^>]*>/);
   assert.match(html, /<h2 id="study-tools-title">Můj AI učitel – Nauč mě to!<\/h2>/);
   assert.match(html, /href="https:\/\/muj-ai-ucitel\.netlify\.app\/"[^>]*rel="noopener noreferrer"[^>]*target="_blank"/);
   assert.ok(html.indexOf('id="study-tools"') < html.indexOf("SchoolLab Library"), "Study Tools must appear before Library");
@@ -103,6 +103,26 @@ test("keeps the AI study tool independent from English and Electro categories", 
   assert.match(data, /export const studyTool = \{/);
   assert.match(data, /url: "https:\/\/muj-ai-ucitel\.netlify\.app\/"/);
   assert.doesNotMatch(data.match(/export const projects: Project\[\] = \[([\s\S]*?)\n\];/)?.[1] ?? "", /my-ai-teacher|muj-ai-ucitel/);
+});
+
+test("activates study-tool SVG motion only when powered and visible", async () => {
+  const [page, styles] = await Promise.all([
+    readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../app/globals.css", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(page, /new IntersectionObserver\(\(\[entry\]\) => \{\s*setStudyToolsVisible\(entry\.isIntersecting\);/);
+  assert.match(page, /observer\.observe\(section\);\s*return \(\) => observer\.disconnect\(\);/);
+  assert.match(page, /data-visible=\{studyToolsVisible\}/);
+  assert.match(page, /className="study-connectors study-connector-left"/);
+  assert.match(styles, /\.site-shell\[data-powered="true"\] \.study-tools\[data-visible="true"\] \.study-book/);
+  assert.match(styles, /@keyframes study-book-draw/);
+  assert.match(styles, /@keyframes study-brain-wake/);
+  assert.match(styles, /@keyframes study-knowledge-impulse/);
+  assert.match(styles, /@keyframes study-orbit-drift/);
+  assert.match(styles, /@keyframes study-gold-pulse/);
+  assert.match(styles, /@media \(prefers-reduced-motion: reduce\)[\s\S]*?study-tool-visual \*/);
+  assert.match(styles, /\.study-tool-visual \{[^}]*pointer-events: none/);
 });
 
 test("keeps SchoolLab configurable and removes starter-only UI", async () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   categoryConfig,
   futureLabs,
@@ -15,6 +15,20 @@ import {
 export default function Home() {
   const [powered, setPowered] = useState(false);
   const [activeZone, setActiveZone] = useState<ProjectCategory | null>(null);
+  const [studyToolsVisible, setStudyToolsVisible] = useState(false);
+  const studyToolsRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const section = studyToolsRef.current;
+    if (!section || typeof IntersectionObserver === "undefined") return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      setStudyToolsVisible(entry.isIntersecting);
+    }, { threshold: 0.01 });
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   const zones = Object.entries(categoryConfig) as [
     ProjectCategory,
@@ -350,7 +364,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="study-tools" id="study-tools" aria-labelledby="study-tools-title">
+      <section
+        className="study-tools"
+        data-visible={studyToolsVisible}
+        id="study-tools"
+        ref={studyToolsRef}
+        aria-labelledby="study-tools-title"
+      >
         <article className="study-tool-card">
           <div className="study-tool-copy">
             <p className="study-tool-kicker">{studyTool.label}</p>
@@ -374,7 +394,9 @@ export default function Home() {
               <circle className="study-spark" cx="120" cy="41" r="5" />
               <circle className="study-node" cx="44" cy="123" r="4" />
               <circle className="study-node" cx="196" cy="123" r="4" />
-              <path className="study-connectors" d="m48 122 13-7m131 7-13-7M120 51v13" />
+              <path className="study-connectors study-connector-left" d="M48 122 61 115" pathLength="1" />
+              <path className="study-connectors study-connector-right" d="M192 122 179 115" pathLength="1" />
+              <path className="study-connectors study-connector-brain" d="M120 51v13" pathLength="1" />
               <path className="study-brain" d="M106 44c-8-8-21-2-20 8-9 4-8 17 1 20 1 10 14 13 20 5m7-33c8-8 21-2 20 8 9 4 8 17-1 20-1 10-14 13-20 5m-2-31v31" />
             </svg>
             <span>LEARN · PRACTICE · REMEMBER</span>
