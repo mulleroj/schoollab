@@ -398,8 +398,6 @@ export default function Home() {
               <path className="study-flow-rail study-flow-left" d="M106 69C96 78 91 88 87 98c-5 11-20 17-39 24" />
               <path className="study-flow-rail study-flow-right" d="M134 69c10 9 15 19 19 29 5 11 20 17 39 24" />
               <path className="study-flow-pulse study-flow-pulse-left study-flow-pulse-cyan" d="M106 69C96 78 91 88 87 98c-5 11-20 17-39 24" pathLength="1" />
-              <path className="study-flow-pulse study-flow-pulse-left study-flow-pulse-gold" d="M106 69C96 78 91 88 87 98c-5 11-20 17-39 24" pathLength="1" />
-              <path className="study-flow-pulse study-flow-pulse-right study-flow-pulse-cyan" d="M134 69c10 9 15 19 19 29 5 11 20 17 39 24" pathLength="1" />
               <path className="study-flow-pulse study-flow-pulse-right study-flow-pulse-gold" d="M134 69c10 9 15 19 19 29 5 11 20 17 39 24" pathLength="1" />
               <path className="study-brain" d="M106 44c-8-8-21-2-20 8-9 4-8 17 1 20 1 10 14 13 20 5m7-33c8-8 21-2 20 8 9 4 8 17-1 20-1 10-14 13-20 5m-2-31v31" />
             </svg>

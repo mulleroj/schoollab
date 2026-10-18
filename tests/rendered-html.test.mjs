@@ -117,7 +117,7 @@ test("activates the study-tool SVG sequence only when powered and at least 30 pe
   assert.match(page, /className="study-book" pathLength="1"/);
   assert.match(page, /className="study-book-trace" pathLength="1"/);
   assert.match(page, /className="study-flow-rail study-flow-left"/);
-  assert.equal((page.match(/className="study-flow-pulse /g) ?? []).length, 4);
+  assert.equal((page.match(/className="study-flow-pulse /g) ?? []).length, 2);
   assert.match(page, /className="study-flow-pulse study-flow-pulse-left study-flow-pulse-cyan"[^>]*pathLength="1"/);
   assert.match(styles, /\.site-shell\[data-powered="true"\] \.study-tools\[data-visible="true"\] \.study-book-trace/);
   assert.match(styles, /@keyframes study-book-draw/);
